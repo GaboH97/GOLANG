@@ -50,7 +50,7 @@ func main() {
         fmt.Println(math.Tan(math.Pow10(i)))
     }
     
-    word := "I am what I am"
+    word := "I am what I am yeah"
     fmt.Println(word)
     m := ContadorPalabras(word)
     for k :=  range m{
