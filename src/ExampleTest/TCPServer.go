@@ -3,7 +3,7 @@ package main
 import "net"
 import "fmt"
 import "bufio"
-import "strings" // only needed below for sample processing
+import "strings"
 
 func main() {
 
@@ -16,7 +16,7 @@ func main() {
   // accept connection on port
   conn, _ := ln.Accept()
 
-  // run loop forever (or until ctrl-c)
+  
   for {
     // will listen for message to process ending in newline (\n)
     message, _ := bufio.NewReader(conn).ReadString('\n');
@@ -25,8 +25,15 @@ func main() {
     
    // if messageAsString 
     fmt.Print("Message Received:", string(message))
-    fmt.Print("Text to send: ")
-    // sample process for string received
+    fmt.Print("Text to send: ",string(message))
+   // fmt.Print("%t",strings.EqualFold(strings.TrimRight(string(message), "\n"), "bye"));
+    // sample process for string receive
+    
+    
+    if(!strings.EqualFold(strings.TrimRight(string(message), "\n"), "bye")){
+    	conn.Close();
+    	break;
+    }
     newmessage := strings.ToUpper(message)
     // send new string back to client
     conn.Write([]byte(newmessage + "\n"))

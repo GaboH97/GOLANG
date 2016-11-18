@@ -18,7 +18,11 @@ func main() {
     // send to socket
     fmt.Fprintf(conn, text + "\n")
     // listen for reply
-    message, _ := bufio.NewReader(conn).ReadString('\n')
+    message, err := bufio.NewReader(conn).ReadString('\n')
+    bufio.NewReader(conn).re
+    if(err != nil){
+    	fmt.Println("Unresponsive server")
+    }
     fmt.Print("Message from server: "+message)
   }
 }
